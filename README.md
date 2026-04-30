@@ -37,8 +37,8 @@ Portfolio/
 └── Portfolio_Screenshot.png
 
 ## 🚀 Live Links
-- **GitHub Profile:** https://github.com/Ashish943164  
-- **Portfolio Repository:** https://github.com/Ashish943164/Portfolio  
+- **GitHub Profile:** https://github.com/ashish943164  
+- **Portfolio Repository:** https://github.com/ashish943164/Portfolio  
 - **Portfolio Website:** https://ashish943164.github.io/Portfolio/
 
 ## 🧩 How to Run Locally
@@ -54,7 +54,7 @@ Portfolio/
 ## 📬 Contact Information
 **Ashish Kumar**  
 📧 Email: ashishkumarmjl011@gmail.com  
-💻 GitHub: https://github.com/Ashish943164  
+💻 GitHub: https://github.com/ashish943164  
 🌐 Portfolio: https://ashish943164.github.io/Portfolio/
 
 ---
