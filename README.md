@@ -1,4 +1,3 @@
-
 ---
 
 # 🌐 Personal Portfolio Website
@@ -29,7 +28,7 @@ I focus on building **structured, responsive, and user-friendly web applications
 
 Portfolio/
 ├── certificates/
-    └── BTech_Marksheets/
+└── BTech_Marksheets/
 ├── images/
 ├── styles.css 
 ├── scripts.js 
@@ -60,6 +59,5 @@ Portfolio/
 ---
 
 ⭐ If you find this project useful, please consider giving it a star.
-
 
 ---
