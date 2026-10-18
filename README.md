@@ -29,8 +29,8 @@ I focus on building **structured, responsive, and user-friendly web applications
 
 Portfolio/
 ├── certificates/
-<br><br/>└── BTech_Marksheets/ <br>
-├── images/ <br><br/>
+<br><br/> └── BTech_Marksheets/
+<br><br/>├── images/
 ├── styles.css <br><br/> 
 ├── scripts.js <br><br/>
 ├── index.html <br><br/>
