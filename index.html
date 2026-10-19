@@ -10,6 +10,8 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href=".css"> -->
+
 </head>
 
 <body>
@@ -17,7 +19,8 @@
     <header>
         <div class="container nav-container">
             <div class="name-container">
-                <div class="letter letter-a" data-letter="A">A</div>
+                <div class="letter letter'" data-letter="'">'</div>
+                <div class="letter letter-a " data-letter="A">A</div>
                 <div class="letter letter-s" data-letter="S">s</div>
                 <div class="letter letter-h" data-letter="H">h</div>
                 <div class="letter letter-i" data-letter="I">i</div>
@@ -26,12 +29,10 @@
             </div>
 
             <div class="nav-controls">
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <button class="theme-toggle" id="theme-toggle">
                     <i class="fas fa-moon"></i>
                 </button>
-                <div class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </div>
+                <div class="hamburger" id="hamburger"> <i class="fas fa-bars"></i></div>
             </div>
 
             <ul class="nav-menu" id="nav-menu">
@@ -50,12 +51,12 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="profile-container">
-                <img src="images/ashish-image.png" alt="Ashish Kumar" class="profile-img">
+                <img src="images\ashish-image.png" alt="Ashish Kumar" class="profile-img">
                 <div class="profile-ellipse"></div>
             </div>
             <div class="hero-content">
                 <h1>Hi, I'm <span>Ashish Kumar</span></h1>
-                <p>B.Tech Computer Science &amp; Engineering</p>
+                <p>B.Tech Computer Science & Engineer</p>
                 <div class="hero-btns">
                     <a href="images/ashish-resume.pdf" class="btn btn-primary">
                         <i class="fas fa-download"></i> Download CV
@@ -89,16 +90,16 @@
     <section class="section" id="education">
         <div class="container">
             <h2 class="section-title">My <span>Education</span></h2>
-            <p class="subtitle">Education and Professional Growth</p>
+            <center>
+                <h1 class="subtitle">Education and Professional Growth</h1>
+            </center>
 
             <!-- Filter Buttons -->
             <div class="filter-container">
                 <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-book-atlas"></i> All</button>
-                <button class="filter-btn" data-filter="education"><i class="fas fa-graduation-cap"></i>
-                    Education</button>
+                <button class="filter-btn" data-filter="education"><i class="fas fa-graduation-cap"></i> Education</button>
                 <button class="filter-btn" data-filter="course"><i class="fa-solid fa-award"></i> Courses</button>
-                <button class="filter-btn" data-filter="internship"><i class="fas fa-briefcase"></i>
-                    Internships</button>
+                <button class="filter-btn" data-filter="internship"><i class="fas fa-briefcase"></i> Internships</button>
                 <button class="filter-btn" data-filter="other"><i class="fa-solid fa-file-lines"></i> Other</button>
             </div>
 
@@ -119,8 +120,7 @@
                     <p class="item-organization">Bihar School Examination Board, Patna</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/10th.pdf" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
+                        <a href="certificates\10th.pdf" target="_blank" class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
@@ -129,7 +129,7 @@
                             education, reflecting my academic achievements and foundational knowledge across core
                             subjects."</p>
                         <ul>
-                            <li>Obt. marks : 412/500</li>
+                            <li>Obt.marks : 412/500</li>
                             <li>Percentage : 82.4 %</li>
                         </ul>
                     </div>
@@ -149,19 +149,18 @@
                     <p class="item-organization">Bihar School Examination Board, Patna</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/12th.pdf" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
+                        <a href="certificates\12th.pdf" target="_blank" class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">"This certificate represents the successful completion of my 12th
-                            grade education, highlighting my academic achievements and proficiency in subjects
+                        <p class="item-description">"This certificate represent the successful completion of my 12th
+                            grade edducation, highlighting managey academic achievementsand proficiency in subjects
                             studied. It reflects my dedication, hard work, and preparation for higher education and
                             future professional opportunities."</p>
                         <ul>
                             <li>Sub : PCM + Hindi, English</li>
-                            <li>Obt. marks : 402/500</li>
+                            <li>Obt.marks : 402/500</li>
                             <li>Percentage : 80.4 %</li>
                         </ul>
                     </div>
@@ -174,7 +173,7 @@
                         </div>
                         <div>
                             <div class="item-date">2023 - 2027</div>
-                            <h3 class="item-title">B.Tech CSE</h3>
+                            <h3 class="item-title">B.Tech CCE</h3>
                         </div>
                     </div>
                     <p class="item-organization">Jagannath University, Jaipur</p>
@@ -196,35 +195,29 @@
                 <div id="certificateModal" class="modal">
                     <div class="modal-content">
                         <span class="close-modal" onclick="hideCertificates()">&times;</span>
-                        <h3><i class="fas fa-certificate"></i> B.Tech Marksheets</h3>
+                        <h3><i class="fas fa-file-certificate"></i> B.Tech Marksheets</h3>
                         <div class="modal-certs">
-                            <a href="certificates/BtechMarksheet/1stSem.pdf" target="_blank" rel="noopener"
-                                class="cert-link">
+                            <a href="certificates/BtechMarksheet/1stSem.pdf" target="_blank" class="cert-link">
                                 <span class="cert-icon">📄</span>
                                 <span class="cert-text">1st Semester Marksheet</span>
                             </a>
-                            <a href="certificates/BtechMarksheet/2ndSem.pdf" target="_blank" rel="noopener"
-                                class="cert-link">
+                            <a href="certificates/BtechMarksheet/2ndSem.pdf" target="_blank" class="cert-link">
                                 <span class="cert-icon">📄</span>
                                 <span class="cert-text">2nd Semester Marksheet</span>
                             </a>
-                            <a href="certificates/BtechMarksheet/3rdSem.pdf" target="_blank" rel="noopener"
-                                class="cert-link">
+                            <a href="certificates/BtechMarksheet/3rdSem.pdf" target="_blank" class="cert-link">
                                 <span class="cert-icon">📄</span>
                                 <span class="cert-text">3rd Semester Marksheet</span>
                             </a>
-                            <a href="certificates/BtechMarksheet/4thSem.pdf" target="_blank" rel="noopener"
-                                class="cert-link">
+                            <a href="certificates/BtechMarksheet/4thSem.pdf" target="_blank" class="cert-link">
                                 <span class="cert-icon">📄</span>
                                 <span class="cert-text">4th Semester Marksheet</span>
                             </a>
-                            <a href="certificates/BtechMarksheet/5thSem.pdf" target="_blank" rel="noopener"
-                                class="cert-link">
+                            <a href="certificates/BtechMarksheet/5thSem.pdf" target="_blank" class="cert-link">
                                 <span class="cert-icon">📄</span>
                                 <span class="cert-text">5th Semester Marksheet</span>
                             </a>
-                            <a href="certificates/BtechMarksheet/6thSem.pdf" target="_blank" rel="noopener"
-                                class="cert-link">
+                            <a href="certificates/BtechMarksheet/6thSem.pdf" target="_blank" class="cert-link">
                                 <span class="cert-icon">📄</span>
                                 <span class="cert-text">6th Semester Marksheet</span>
                             </a>
@@ -232,6 +225,7 @@
                     </div>
                 </div>
 
+                
                 <!-- Course Items -->
                 <div class="education-item course" data-category="course">
                     <div class="item-header">
@@ -246,16 +240,15 @@
                     <p class="item-organization">Bihar Skills Development Mission</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/KYP_certificate.pdf" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
+                        <a href="certificates\KYP_certificate.pdf" target="_blank" class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">"These certificates were awarded under the 'Kushal Yuva Program' by
+                        <p class="item-description">"These certificate were awarded under the 'Kushal Yuva Program' by
                             the Bihar Skills Development Mission. I successfully completed 3-month courses in BS-CIT,
-                            BS-CLS, BS-CSS, gaining hands-on skills in computer applications, IT fundamentals, office
-                            productivity tools, and digital literacy, which enhance my technical knowledge and
+                            BS-CLS, BS-CSS, gaining hands-onskills in computer applications, IT foundationals, office
+                            productivity toolss, and digital literacy, which enhance my technical knowledge and
                             employability."</p>
                         <ul>
                             <li>BS-CIT : 94.65 %</li>
@@ -278,13 +271,13 @@
                     <p class="item-organization">N-IT Computer Education, Gurugram</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/diploma_certificates.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\diploma_certificates.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">"The Basic Computer Diploma course provides foundational knowledge
+                        <p class="item-description">"The Basic Computer Diploma course provides foundentional knowkedge
                             and skills in computer operations, MS Office applications, internet usage, and basic IT
                             components. It is designed to enhance digital literacy and prepare learning for practical
                             use of computer technology in academic and professional settings."</p>
@@ -308,15 +301,15 @@
                     <p class="item-organization">NPTEL Online Certification</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Certificate_Of_IKS_2024.PDF" target="_blank" rel="noopener"
+                        <a href="certificates\Certificate_Of_IKS_2024.PDF" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
                         <p class="item-description">"An online certification course about Indian Knowledge System
-                            covering traditional knowledge, philosophy, and scientific heritage. Gaining knowledge of
-                            Indian history, culture and more."</p>
+                            covering traditional knowledge, philosophy, and scientific heritage. Gaining knowledgeof
+                            Indian history, culterand so more."</p>
                         <ul>
                             <li>Score : 64 %</li>
                         </ul>
@@ -336,7 +329,7 @@
                     <p class="item-organization">NPTEL Online Certification</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/SoftwareTestingCertificate2025.PDF" target="_blank" rel="noopener"
+                        <a href="certificates\SoftwareTestingCertificate2025.PDF" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -355,13 +348,13 @@
                         </div>
                         <div>
                             <div class="item-date">May-2024</div>
-                            <h3 class="item-title">Data Visualization using Python</h3>
+                            <h3 class="item-title">Data Visualization using Py</h3>
                         </div>
                     </div>
                     <p class="item-organization">Great Learning</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/GL_data-visualization-in-python2024.PDF" target="_blank" rel="noopener"
+                        <a href="certificates\GL_data-visualization-in-python2024.PDF" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -370,7 +363,7 @@
                         <p class="item-description">"Thrilled to add a Data Visualization with Python certificate to my
                             skillset! I've mastered creating insightful charts and dashboards with libraries like
                             Seaborn and Plotly. This certification is a key step in my journey to becoming a more
-                            effective data storyteller."</p>
+                            effective data storyteller. See the certificate in the comments!"</p>
                         <ul>
                             <li>Duration : 1-Month</li>
                         </ul>
@@ -384,13 +377,48 @@
                         </div>
                         <div>
                             <div class="item-date">Summer Internship 2024</div>
-                            <h3 class="item-title">Programming Essentials in Python</h3>
+                            <h3 class="item-title">Programming Essential in Py</h3>
                         </div>
                     </div>
                     <p class="item-organization">CISCO</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Ak_python.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\Ak_python.pdf" target="_blank" class="journey-btn certificate-btn">
+                            <i class="fas fa-certificate"></i> Certificate
+                        </a>
+                    </div>
+                    <div class="details">
+                        <p class="item-description">"I'm excited to share that I've completed the Programming Essentials
+                            in Python certification. This has strengthened my understanding of fundamental programming
+                            concepts, including data structures, control flow, and problem-solving with Python. Eager to
+                            apply these skills to new projects and continue my learning journey!".</p>
+
+                        <ul>
+                            <li>Duration : july-july 2024</li>
+                            <li>* Core Concepts,</li>
+                            <li>* Data Structures,</li>
+                            <li>* Control Flow,</li>
+                            <li>* Functions & Modules, and</li>
+                            <li>* Problem-Solving.</li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="education-item internship" data-category="internship">
+                    <div class="item-header">
+                        <div class="item-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <div class="item-date">Summer Internship 2024</div>
+                            <h3 class="item-title">Data Analysis with Py, SQL & Power BI</h3>
+                        </div>
+                    </div>
+                    <p class="item-organization">Learn and Build (LnB)</p>
+                    <div class="item-actions">
+                        <button class="journey-btn read-more">Read More</button>
+                        <a href="certificates\LnB_DataAnalysisWithPy2024.PDF" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -401,12 +429,7 @@
                             concepts, including data structures, control flow, and problem-solving with Python. Eager to
                             apply these skills to new projects and continue my learning journey!"</p>
                         <ul>
-                            <li>Duration : July 2024</li>
-                            <li>* Core Concepts</li>
-                            <li>* Data Structures</li>
-                            <li>* Control Flow</li>
-                            <li>* Functions &amp; Modules</li>
-                            <li>* Problem-Solving</li>
+                            <li>duration : 60 Days</li>
                         </ul>
                     </div>
                 </div>
@@ -418,41 +441,13 @@
                         </div>
                         <div>
                             <div class="item-date">Summer Internship 2024</div>
-                            <h3 class="item-title">Data Analysis with Python, SQL &amp; Power BI</h3>
-                        </div>
-                    </div>
-                    <p class="item-organization">Learn and Build (LnB)</p>
-                    <div class="item-actions">
-                        <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/LnB_DataAnalysisWithPy2024.PDF" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
-                            <i class="fas fa-certificate"></i> Certificate
-                        </a>
-                    </div>
-                    <div class="details">
-                        <p class="item-description">"I'm excited to share that I've completed the Data Analysis with
-                            Python, SQL &amp; Power BI program. This has strengthened my understanding of data analysis
-                            concepts, including data cleaning, transformation, visualization, and reporting."</p>
-                        <ul>
-                            <li>Duration : 60 Days</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="education-item internship" data-category="internship">
-                    <div class="item-header">
-                        <div class="item-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div>
-                            <div class="item-date">Summer Internship 2024</div>
-                            <h3 class="item-title">Intro to Cybersecurity</h3>
+                            <h3 class="item-title">Intio-To-Cybersecurity</h3>
                         </div>
                     </div>
                     <p class="item-organization">CISCO</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Ashish_Cybersecurity_2024.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\Ashish_Cybersecurity_2024.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -477,10 +472,10 @@
                             <h3 class="item-title">Data Analytics Using AI-LLMs</h3>
                         </div>
                     </div>
-                    <p class="item-organization">Connecting Dreams Foundation</p>
+                    <p class="item-organization">Connecting Dreams foundation</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/VOIS-dataAnalysis-AIMLcertificate2024.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\VOIS-dataAnalysis-AIMLcertificate2024.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -491,7 +486,7 @@
                             automating analytical workflows—all through a flexible digital platform. This experience has
                             prepared me to excel in remote, tech-forward environments.</p>
                         <ul>
-                            <li>Duration : 10 Oct - 08 Nov 2024</li>
+                            <li>Duration : 10 Oct - 08 Nev 2024</li>
                         </ul>
                     </div>
                 </div>
@@ -502,42 +497,42 @@
                             <i class="fas fa-briefcase"></i>
                         </div>
                         <div>
-                            <div class="item-date">Nov - Dec 2024</div>
+                            <div class="item-date">Nev -Dec 2024</div>
                             <h3 class="item-title">AI - Data Analytics</h3>
                         </div>
                     </div>
-                    <p class="item-organization">Edunet Foundation</p>
+                    <p class="item-organization">Edunet foundation</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/AICTE_AI-DataAnalyticsCertificate2024.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\AICTE_AI-DataAnalyticsCertificate2024.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">Completed 4-week virtual internship on Artificial Intelligence and
-                            Data Analytics focused on Green skills, organized by AICTE, Shell India Markets Private
+                        <p class="item-description">Completed 4-week virtual internship on Artificial Inteligence and
+                            data Analytics focused on Green skills, organized by AICTE, Shell India Markets Private
                             Limited and Edunet Foundation under Skills4Future program.</p>
                         <ul>
-                            <li>Duration : 14 Nov - 14 Dec 2024</li>
+                            <li>Duration : 14 Nev - 14 Dev 2024</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="education-item internship" data-category="internship">
+                 <div class="education-item internship" data-category="internship">
                     <div class="item-header">
                         <div class="item-icon">
                             <i class="fas fa-briefcase"></i>
                         </div>
                         <div>
-                            <div class="item-date">Nov - Dec 2024</div>
+                            <div class="item-date">Nev -Dec 2024</div>
                             <h3 class="item-title">Introduction to IoT and Digital Transformation</h3>
                         </div>
                     </div>
                     <p class="item-organization">CISCO</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Intro-to-IoT_Update2025.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\Intro-to -IoT_Update2025.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -552,7 +547,7 @@
                         </ul>
                     </div>
                 </div>
-
+                
                 <div class="education-item internship" data-category="internship">
                     <div class="item-header">
                         <div class="item-icon">
@@ -566,7 +561,7 @@
                     <p class="item-organization">CISCO</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Junior_cybersecurity_Essential_2025.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\Junior_cybersecurity_Essential_2025 .pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
@@ -576,7 +571,8 @@
                             cybersecurity, Threats, Ethical hacking fundamentals, Network and data protection,
                             Encryption and authentication, Cyber laws awareness".</p>
                         <ul>
-                            <li>Duration : 45 days</li>
+                            <li>Duration : 45 days </li>
+
                         </ul>
                     </div>
                 </div>
@@ -594,16 +590,16 @@
                     <p class="item-organization">CISCO</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Networking_Essential_certificate_2025.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\Networking_Essential_certificate_2025.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">Completed Networking Essentials course - learned network
-                            fundamentals, protocols, and troubleshooting techniques.</p>
+                        <p class="item-description">Completed Networking Essentials cource - learned network
+                            foundamentals, protocols, and troubleshooting techniques.</p>
                         <ul>
-                            <li>Duration : 45 Days</li>
+                            <li>Duration : 45 Days </li>
                         </ul>
                     </div>
                 </div>
@@ -618,19 +614,17 @@
                             <h3 class="item-title">Data Analyst</h3>
                         </div>
                     </div>
-                    <p class="item-organization">SAM AI Technologies</p>
+                    <p class="item-organization">SAM AI technologies</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Data_Analytics__Certificate(SAM_Ai_Technology)_internship.pdf"
-                            target="_blank" rel="noopener" class="journey-btn certificate-btn">
+                        <a href="certificates\Data_Analytics__Certificate(SAM_Ai_Technology)_internship.pdf" target="_blank"
+                            class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
                         <p class="item-description">
-                            Successfully completed a Data Analyst Internship at SAM AI Technologies, gaining practical
-                            experience in Python, SQL, Excel, data cleaning, data visualization and data-driven insights
-                            to support effective decision-making.
+                            Successfully compleated a data Analyst Internship at SAM AI Technologies, gaining practival experiences in Python, SQL, Excel, data cleaning, data visualization and data-driven insights to support effective decision-making.
                         </p>
                         <ul>
                             <li>Duration : 1 month</li>
@@ -651,13 +645,13 @@
                     <p class="item-organization">Vodafone Idea Foundation</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/VI_BasicOfLinuxCertificate2024.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\VI_BasicOfLinuxCertificate2024.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">In this section of course, I am understanding the working of Linux,
+                        <p class="item-description">In this section of cource, i am understanding the working of linux,
                             its types, and how to use this operating system.</p>
                     </div>
                 </div>
@@ -668,24 +662,23 @@
                             <i class="fa-solid fa-file-lines"></i>
                         </div>
                         <div>
-                            <div class="item-date">Nov 2024</div>
+                            <div class="item-date">Nev 2024</div>
                             <h3 class="item-title">AI Tools Workshop</h3>
                         </div>
                     </div>
                     <p class="item-organization">Be10X</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Ben10_AI_Tool_Certificate2024.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\Ben10_AI_Tool_Certificate2024.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">I'm successful completion of AI tools and ChatGPT workshop. Holder
-                            of
+                        <p class="item-description">I'm successful completion of AI tools and ChatGPT workshop Holder of
                             this certificate can</p>
                         <ul>
-                            <li># Create PPTs using AI in under 5 min.</li>
+                            <li># Create PPts using AI in under 5 min.</li>
                             <li># Analyse data using AI in under 30 min.</li>
                             <li># Code and Debug using AI in under 10 min.</li>
                         </ul>
@@ -699,22 +692,21 @@
                         </div>
                         <div>
                             <div class="item-date">2024</div>
-                            <h3 class="item-title">Diploma in Office Automation &amp; Publishing (DOAP)</h3>
+                            <h3 class="item-title">Diploma in Office Automation & Publishing (DOAP)</h3>
                         </div>
                     </div>
-                    <p class="item-organization">Best Computer Technology</p>
+                    <p class="item-organization">Best Computer Technology </p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/DAOP-certificate.pdf" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
+                        <a href="certificates\DAOP-certificate.pdf" target="_blank" class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
                         <p class="item-description">I'm successfully complete this exam then this certificate is
-                            provided by Best Computer Technology</p>
+                            provided by Best Computer Technology </p>
                         <ul>
-                            <li>Obt Marks : 76 %</li>
+                            <li>Opt Marks : 76 %</li>
                         </ul>
                     </div>
                 </div>
@@ -732,14 +724,14 @@
                     <p class="item-organization">Mind Luster</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/Mindluster_FullStack-ReactDjango-Certificate2025.pdf" target="_blank"
-                            rel="noopener" class="journey-btn certificate-btn">
+                        <a href="certificates\Mindluster_FullStack-ReactDjango-Certificate2025.pdf" target="_blank"
+                            class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
-                        <p class="item-description">This certificate is a basic introduction of the React-Django course
-                            completion. In this course completion, I understand the connectivity of Django Python
+                        <p class="item-description">This certificate is a basics introduction of the React-Django cource
+                            completion. in this cource complation, I am understand the connectivity of djanho python
                             normally.</p>
                         <ul>
                             <li>Duration : 3 days</li>
@@ -753,21 +745,21 @@
                             <i class="fa-solid fa-file-lines"></i>
                         </div>
                         <div>
-                            <div class="item-date">March 2025</div>
-                            <h3 class="item-title">MS Excel Fundamentals</h3>
+                            <div class="item-date">march 2025</div>
+                            <h3 class="item-title">MS Excel fundamentals</h3>
                         </div>
                     </div>
                     <p class="item-organization">Udemy</p>
                     <div class="item-actions">
                         <button class="journey-btn read-more">Read More</button>
-                        <a href="certificates/MS_Excel_introduction2025.pdf" target="_blank" rel="noopener"
+                        <a href="certificates\MS_Excel_introduction2025.pdf" target="_blank"
                             class="journey-btn certificate-btn">
                             <i class="fas fa-certificate"></i> Certificate
                         </a>
                     </div>
                     <div class="details">
                         <p class="item-description">"In this section, I am Understanding the MS Excel Fundamentals like
-                            Formulas - Mathematics, Graphs, Formatting the sheet, and managing the data in Excel sheet."
+                            Formulas - Mathematics, Graphs, Foemating the sheet, and managing the data in Excelsheet."
                         </p>
                         <ul>
                             <li>Duration : 37 mins</li>
@@ -782,33 +774,66 @@
     <section class="section" id="project">
         <div class="container">
             <h2 class="section-title">My <span>Project</span></h2>
-            <div class="projects-grid">
+            <d class="projects-grid">
+
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="images/name-style.jpg" alt="Name-Style Project">
+                        <img src="" alt="Name-Style Project">
+                        <div class="music-icon-overlay">
+                            <i class="fa-solid fa-font"></i>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3></h3>
+                        <p></p>
+                        <div class="full-description">
+                            <p></p>
+
+                            <p></p>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                        <div class="project-actions">
+                            <a href="" class="project-demo">
+                                View Demo <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <button class="read-more">
+                                Read More <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">
+                        <!-- Project image with music icon overlay -->
+                        <img src="images\name-style.jpg" alt="Name-Style Project">
                         <div class="music-icon-overlay">
                             <i class="fa-solid fa-font"></i>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Name Style</h3>
-                        <p>This is a stylish design of alphabet letters which is used in my name-letter.</p>
+                        <p>This is a stylies design of al[habet letters which is used in my name-letter.</p>
                         <div class="full-description">
-                            <p>Our name is a brand that represents your very important role in your life. In every
-                                documentation your name plays a main role for identifying the certificate.
+                            <p>Our name is a brand that represent your very important role in your life. In every
+                                documentation youe name play a main role for identifying the certificate.
                                 In this letters of name each letter of color is different.
                             </p>
                             <p>Key features include:</p>
                             <ul>
                                 <li>Use as a logo</li>
                                 <li>Letter move up-down direction</li>
-                                <li>Effective view</li>
-                                <li>Beautiful look</li>
+                                <li>Efective view</li>
+                                <li>Beautifull look</li>
                             </ul>
                         </div>
                         <div class="project-actions">
-                            <a href="https://ashish943164.github.io/Name-style/" target="_blank" rel="noopener"
-                                class="project-demo">
+                            <a href="https://ashish943164.github.io/Name-style/" class="project-demo">
                                 View Demo <i class="fas fa-arrow-right"></i>
                             </a>
                             <button class="read-more">
@@ -818,30 +843,30 @@
                     </div>
                 </div>
 
+                <!-- Additional project card example -->
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="images/clock6.jpg" alt="Analog Clock">
+                        <img src="images\clock6.jpg" alt="Analog Clock">
                         <div class="music-icon-overlay">
                             <i class="fa-regular fa-clock"></i>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Analog Clock</h3>
-                        <p>A simple and elegant analog clock created using HTML, CSS, JavaScript.</p>
+                        <p>A simple and elegant analog clock for created using HTML, CSS, JavaScripts.</p>
                         <div class="full-description">
                             <p>This project showcases a simple and elegant design, with smooth and precise clock hands
-                                movement. The clock displays the current time and is customizable to fit various design
+                                movement. The clock display the current time and is customizable to fit various design
                                 preferences. Feel free to explore, fork and contribute to this project.</p>
                             <p>Key features include:</p>
                             <ul>
-                                <li>Display current time in analog format.</li>
+                                <li>Display current time in analog formate.</li>
                                 <li>Smooth and precise clock hands movement.</li>
-                                <li>Customizable design and layout.</li>
+                                <li>Custmizable design and layout.</li>
                             </ul>
                         </div>
                         <div class="project-actions">
-                            <a href="https://ashish943164.github.io/clock/" target="_blank" rel="noopener"
-                                class="project-demo">
+                            <a href="https://ashish943164.github.io/clock/" class="project-demo">
                                 View Demo <i class="fas fa-arrow-right"></i>
                             </a>
                             <button class="read-more">
@@ -851,9 +876,10 @@
                     </div>
                 </div>
 
+                <!-- Third project card example -->
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="images/music-player.jpg" alt="Music Player">
+                        <img src="" alt="Music Player">
                         <div class="music-icon-overlay">
                             <i class="fa-solid fa-music"></i>
                         </div>
@@ -885,17 +911,18 @@
                     </div>
                 </div>
 
+                <!-- fourth project card example -->
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="images/web-developer-portfolio.png" alt="Portfolio Website">
+                        <img src="images\web-developer-portfolio.png" alt="Music Player">
                         <div class="music-icon-overlay">
                             <i class="fa-solid fa-user-tie"></i>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Portfolio Website</h3>
-                        <p>This is my portfolio website, including all things related to my bio,
-                            education, projects, skills, and contact details.</p>
+                        <p>This is my portfolio website, in this website including all most related to my bio,
+                            education,project,skills,and contact details.</p>
                         <div class="full-description">
                             <p>I am passionate about creating innovative solutions and building meaningful projects. I
                                 enjoy learning and exploring new things. My goal is to make a positive impact through my
@@ -919,30 +946,27 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="images/Screenshot 2025-08-30 090631.png" alt="University Network Design">
+                        <img src="images\Screenshot 2025-08-30 090631.png" alt="University Network Design">
                         <div class="music-icon-overlay">
-                            <i class="fa-solid fa-network-wired"></i>
+                        <i class="fa-solid fa-n"></i>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>University Campus Network</h3>
-                        <p>A secure and scalable enterprise network design connecting multiple campuses with robust
-                            infrastructure.</p>
+                        <p>A secure and scalable enterprise network design connecting multiple campuses with robust infrastructure.</p>
                         <div class="full-description">
-                            <p>Designed and simulated a comprehensive network solution for a multi-campus university
-                                using Cisco Packet Tracer, featuring secure segmentation and seamless connectivity.</p>
+                            <p>Designed and simulated a comprehensive network solution for a multi-campus university using Cisco Packet Tracer, featuring secure segmentation and seamless connectivity.</p>
                             <ul>
-                                <li>VLAN segmentation for departmental isolation &amp; security</li>
+                                <li>VLAN segmentation for departmental isolation & security</li>
                                 <li>Inter-VLAN routing with Layer 3 switching</li>
-                                <li>WAN connectivity between main &amp; branch campuses</li>
-                                <li>Future-ready for Wi-Fi, VoIP &amp; cloud integration</li>
+                                <li>WAN connectivity between main & branch campuses</li>
+                                <li>Future-ready for Wi-Fi, VoIP & cloud integration</li>
                             </ul>
                         </div>
                         <div class="project-actions">
-                            <a href="#" class="project-demo">
+                            <a href="" class="project-demo">
                                 View Demo <i class="fas fa-arrow-right"></i>
                             </a>
                             <button class="read-more">
@@ -955,187 +979,62 @@
         </div>
     </section>
 
-    <!-- Research Section -->
-    <!-- Research Section -->
-    <section class="section research-section" id="Research">
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Skills Section -->
+    <!-- <section class="section" id="skills">
         <div class="container">
-            <h2 class="section-title">Research <span>&amp; Publications</span></h2>
-            <p class="research-subtitle">
-                Exploring Artificial Intelligence, Data Analytics and Computer Vision
-            </p>
-
-            <div class="research-grid">
-
-                <!-- Research Paper 1 -->
-                <article class="research-card">
-                    <div class="research-card-top">
-                        <div class="research-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <span class="research-tag">Conference Paper</span>
-                    </div>
-                    <h3>
-                        AI-Driven Data Visualization for Big Data Analytics
-                        and Decision Support: Tools, Challenges, and Future Directions
-                    </h3>
-                    <p class="research-authors">
-                        <strong>Ashish Kumar</strong> and
-                        <strong>Prof. (Dr.) Renu Bagoria</strong>
-                    </p>
-                    <p class="research-description">
-                        This research explores how Artificial Intelligence enhances
-                        big data visualization through automated data processing,
-                        chart recommendations, predictive analytics and intelligent
-                        dashboards. It examines platforms such as Power BI, Tableau,
-                        SAS Visual Analytics and Looker, along with applications,
-                        implementation challenges and future research directions.
-                    </p>
-                    <div class="research-meta">
-                        <span><i class="fas fa-calendar-alt"></i> May 15–16, 2026</span>
-                        <span><i class="fas fa-users"></i> 4th International Conference</span>
-                        <span><i class="fas fa-book"></i> ICESSM-2026</span>
-                    </div>
-                    <div class="research-keywords">
-                        <span>Artificial Intelligence</span>
-                        <span>Big Data</span>
-                        <span>Data Visualization</span>
-                        <span>Decision Support</span>
-                    </div>
-                    <p class="research-publication">
-                        <i class="fas fa-university"></i>
-                        4th International Conference on Engineering, Social Science
-                        &amp; Management
-                    </p>
-                    <p class="research-isbn">
-                        <strong>ISBN:</strong> 978-93-94840-88-1
-                    </p>
-
-                    <!-- ✅ NEW: Paper & Certificate Links -->
-                    <div class="research-actions">
-                        <a href="certificates/research/AI-DataVisualization-ICESSM2026.pdf" target="_blank"
-                            rel="noopener" class="journey-btn paper-btn">
-                            <i class="fas fa-file-pdf"></i> View Paper
-                        </a>
-                        <a href="certificates/research/ICESSM2026_Certificate.pdf" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
-                            <i class="fas fa-certificate"></i> Certificate
-                        </a>
-                    </div>
-
-                    <button class="research-btn" type="button" data-research="research-details-1" aria-expanded="false"
-                        aria-controls="research-details-1">
-                        Read More <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <div class="research-details" id="research-details-1" hidden>
-                        <h4>Research Focus</h4>
-                        <ul>
-                            <li>AI-enhanced visual analytics and interactive dashboards</li>
-                            <li>Automated chart selection and predictive visualization</li>
-                            <li>Applications in healthcare, finance, education and retail</li>
-                            <li>Data quality, privacy, explainability and visual complexity</li>
-                            <li>Future directions in conversational and autonomous analytics</li>
-                        </ul>
-                    </div>
-                </article>
-
-                <!-- Research Paper 2 -->
-                <article class="research-card">
-                    <div class="research-card-top">
-                        <div class="research-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <span class="research-tag">Journal Paper</span>
-                    </div>
-                    <h3>
-                        Object Detection and Tracking for Smart Surveillance
-                        with Automated Email Alerts
-                    </h3>
-                    <p class="research-authors">
-                        <strong>Ashish Kumar</strong> and
-                        <strong>Prof. Dr. Renu Bagoria</strong>
-                    </p>
-                    <p class="research-description">
-                        This research presents an AI-based surveillance system
-                        designed to detect people and weapons in video streams,
-                        track detected objects and send automated email alerts
-                        with captured snapshots. It integrates YOLOv8, DeepSORT,
-                        Python, OpenCV and the Ultralytics framework for video
-                        analysis and real-time monitoring.
-                    </p>
-                    <div class="research-meta">
-                        <span><i class="fas fa-calendar-alt"></i> June 2026</span>
-                        <span><i class="fas fa-book-open"></i> IJSREM</span>
-                        <span><i class="fas fa-robot"></i> Computer Vision</span>
-                    </div>
-                    <div class="research-keywords">
-                        <span>YOLOv8</span>
-                        <span>DeepSORT</span>
-                        <span>Object Tracking</span>
-                        <span>OpenCV</span>
-                    </div>
-                    <p class="research-publication">
-                        <i class="fas fa-file-alt"></i>
-                        International Journal of Scientific Research in Engineering
-                        and Management (IJSREM)
-                    </p>
-                    <p class="research-isbn">
-                        <strong>Volume:</strong> 10 |
-                        <strong>Issue:</strong> 06 |
-                        <strong>ISSN:</strong> 2582-3930
-                    </p>
-                    <p class="research-doi">
-                        <strong>DOI:</strong>
-                        <a href="https://doi.org/10.55041/IJSREM65484" target="_blank" rel="noopener noreferrer">
-                            10.55041/IJSREM65484
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </p>
-
-                    <!-- ✅ NEW: Paper & Certificate Links -->
-                    <div class="research-actions">
-                        <a href="certificates/research/ObjectDetection-IJSREM2026.pdf" target="_blank" rel="noopener"
-                            class="journey-btn paper-btn">
-                            <i class="fas fa-file-pdf"></i> View Paper
-                        </a>
-                        <a href="certificates/research/IJSREM2026_Certificate.pdf" target="_blank" rel="noopener"
-                            class="journey-btn certificate-btn">
-                            <i class="fas fa-certificate"></i> Certificate
-                        </a>
-                        <a href="https://doi.org/10.55041/IJSREM65484" target="_blank" rel="noopener noreferrer"
-                            class="journey-btn doi-btn">
-                            <i class="fas fa-link"></i> DOI
-                        </a>
-                    </div>
-
-                    <button class="research-btn" type="button" data-research="research-details-2" aria-expanded="false"
-                        aria-controls="research-details-2">
-                        Read More <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <div class="research-details" id="research-details-2" hidden>
-                        <h4>System Contributions</h4>
-                        <ul>
-                            <li>YOLOv8-based human and weapon detection</li>
-                            <li>DeepSORT-based multi-object tracking</li>
-                            <li>Support for webcam, recorded video and CCTV streams</li>
-                            <li>Automatic snapshot capture and email notifications</li>
-                            <li>Performance evaluation using precision, recall, mAP,
-                                FPS and alert response time</li>
-                        </ul>
-                    </div>
-                </article>
-
+            <h2 class="section-title">My <span>skills</span></h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-cuttlefish"></i></div>
+                    <div class="skill-name">C</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-python"></i></div>
+                    <div class="skill-name">Python</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                    <div class="skill-name">HTML5</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-css3"></i></div>
+                    <div class="skill-name">CSS3</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fab fa-js"></i></div>
+                    <div class="skill-name">JavaScript</div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon"><i class="fas fa-database"></i></div>
+                    <div class="skill-name">MongoDB</div>
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- Skills Section -->
+    <!-- Skills Section - Modern Design -->
     <section class="section" id="skills">
         <div class="container">
             <h2 class="section-title">My <span>Skills</span></h2>
-            <p class="subtitle">Technical Expertise and Proficiency Levels</p>
+            <center>
+                <h1 class="subtitle">Technical Expertise and Proficiency Levels</h1>
+            </center>
 
+            <!-- Skills Slider -->
             <div class="slider-container">
-                <button class="slider-nav prev" id="prevBtn" aria-label="Previous skills">
+                <button class="slider-nav prev" id="prevBtn">
                     <i class="fas fa-chevron-left"></i>
                 </button>
 
@@ -1148,7 +1047,7 @@
                             </div>
                             <div class="category-info">
                                 <h3>Frontend Development</h3>
-                                <p>User Interface &amp; Experience</p>
+                                <p>User Interface & Experience</p>
                             </div>
                         </div>
                         <div class="skills-list">
@@ -1166,6 +1065,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Expandable Frontend Skills -->
                             <div class="expandable-skills" id="frontend-expandable">
                                 <div class="skill-item">
                                     <div class="skill-icon">
@@ -1225,7 +1125,7 @@
                             </div>
                             <div class="category-info">
                                 <h3>Backend Development</h3>
-                                <p>Server &amp; API Development</p>
+                                <p>Server & API Development</p>
                             </div>
                         </div>
                         <div class="skills-list">
@@ -1243,6 +1143,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Expandable Backend Skills -->
                             <div class="expandable-skills" id="backend-expandable">
                                 <div class="skill-item">
                                     <div class="skill-icon">
@@ -1288,7 +1190,7 @@
                             </div>
                             <div class="category-info">
                                 <h3>Database Management</h3>
-                                <p>Data Storage &amp; Management</p>
+                                <p>Data Storage & Management</p>
                             </div>
                         </div>
                         <div class="skills-list">
@@ -1306,6 +1208,9 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <!-- Expandable Database Skills -->
                             <div class="expandable-skills" id="database-expandable">
                                 <div class="skill-item">
                                     <div class="skill-icon">
@@ -1383,6 +1288,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Expandable Tools Skills -->
                             <div class="expandable-skills" id="tools-expandable">
                                 <div class="skill-item">
                                     <div class="skill-icon">
@@ -1412,6 +1319,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="skill-item">
                                     <div class="skill-icon">
                                         <i class="fab fa-figma"></i>
@@ -1463,16 +1371,17 @@
                     </div>
                 </div>
 
-                <button class="slider-nav next" id="nextBtn" aria-label="Next skills">
+                <button class="slider-nav next" id="nextBtn">
                     <i class="fas fa-chevron-right"></i>
                 </button>
 
+                <!-- Slider Dots -->
                 <div class="slider-dots" id="sliderDots"></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Setion -->
     <section class="section" id="contact">
         <div class="container">
             <h2 class="section-title">Contact <span>Me</span></h2>
@@ -1502,26 +1411,25 @@
                         </div>
                         <div class="contact-text">
                             <h4>Location</h4>
-                            <p>Bettiah, W.Champaran, Bihar-845454, IN</p>
+                            <p>Bettiah, W.champarana, Bihar-845454, IN</p>
                         </div>
                     </div>
+                    <!-- Social Media Links -->
                     <div class="social-links">
                         <h4>Follow Me</h4>
                         <div class="social-icons">
-                            <a href="https://t.me/Ashish943164" target="_blank" rel="noopener" class="social-icon"
-                                aria-label="Telegram">
+                            <a href="https://t.me/Ashish943164" target="_blank" class="social-icon">
                                 <i class="fab fa-telegram"></i>
                             </a>
-                            <a href="https://www.linkedin.com/in/ashish-kumar-93a973303" target="_blank" rel="noopener"
-                                class="social-icon" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/ashish-kumar-93a973303" target="_blank"
+                                class="social-icon">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="https://github.com/Ashish943164" target="_blank" rel="noopener" class="social-icon"
-                                aria-label="GitHub">
+                            <a href="https://github.com/Ashish943164" target="_blank" class="social-icon">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://api.whatsapp.com/send?phone=919431649783" target="_blank" rel="noopener"
-                                class="social-icon" aria-label="WhatsApp">
+                            <a href="https://api.whatsapp.com/send?phone=919431649783" target="_blank"
+                                class="social-icon">
                                 <i class="fab fa-whatsapp"></i>
                             </a>
                         </div>
@@ -1530,7 +1438,9 @@
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <h2 style="text-align:center;">Write your query</h2>
+                            <Center>
+                                <h2>Write your query</h2>
+                            </Center>
                             <label for="name">Name</label>
                             <input type="text" id="name" class="form-control" required>
                         </div>
@@ -1553,14 +1463,26 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <a href="#home" class="back-to-top" aria-label="Back to top">
+                <a href="#home" class="back-to-top">
                     <i class="fas fa-arrow-up"></i>
                 </a>
-                <p class="copyright">&copy; <span id="currentYear"></span> Ashish Kumar. All rights reserved.</p>
+                <p class="copyright">&copy; <span id="currentYear"></span> Ashish Kumar. I love You !.</p>
             </div>
         </div>
     </footer>
-    <script src="JavaScripts1.js"></script>
+    <script src="JavaScripts.js"></script>
+    <!-- <script src=""></script> -->
 </body>
 
+
 </html>
+
+
+
+
+
+
+
+
+
+
