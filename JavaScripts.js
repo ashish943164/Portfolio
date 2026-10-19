@@ -1,382 +1,501 @@
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = themeToggle.querySelector('i');
+/**
+ * ============================================================
+ *  Ashish Kumar — Portfolio Scripts
+ *  Refactored for maintainability, performance & safety
+ *  No functional changes — all existing features preserved
+ * ============================================================
+ */
 
-// Toggle menu on hamburger click
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+'use strict';
 
-    if (navMenu.classList.contains('active')) {
-        hamburger.innerHTML = '<i class="fas fa-times"></i>';
+/* ------------------------------------------------------------
+ *  1. UTILITY HELPERS
+ * ---------------------------------------------------------- */
+
+/** Safe element selector — returns null if not found */
+const $ = (selector, context = document) => context.querySelector(selector);
+
+/** Safe multi-element selector — returns empty array if none */
+const $$ = (selector, context = document) =>
+    Array.from(context.querySelectorAll(selector));
+
+/** Run a function safely after DOM is ready */
+const onReady = (fn) => {
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn);
     } else {
-        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        fn();
     }
-});
+};
 
-// Close menu when a link is clicked
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-    });
-});
+/* ------------------------------------------------------------
+ *  2. THEME MANAGEMENT (Dark / Light Mode)
+ * ---------------------------------------------------------- */
 
-// Theme toggle functionality
-themeToggle.addEventListener('click', () => {
-    const currentTheme = document.body.getAttribute('data-theme');
+const ThemeManager = (() => {
+    const STORAGE_KEY = 'theme';
+    const DARK_ATTR = 'data-theme';
 
-    if (currentTheme === 'dark') {
-        document.body.removeAttribute('data-theme');
-        themeIcon.classList.remove('fa-sun');
-        themeIcon.classList.add('fa-moon');
-        localStorage.setItem('theme', 'light');
-    } else {
-        document.body.setAttribute('data-theme', 'dark');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-        localStorage.setItem('theme', 'dark');
+    const getToggle = () => $('#theme-toggle');
+    const getIcon = () => getToggle()?.querySelector('i');
+
+    function applyTheme(theme) {
+        const icon = getIcon();
+        if (!icon) return;
+
+        if (theme === 'dark') {
+            document.body.setAttribute(DARK_ATTR, 'dark');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            document.body.removeAttribute(DARK_ATTR);
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+        localStorage.setItem(STORAGE_KEY, theme);
     }
-});
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-    document.body.setAttribute('data-theme', 'dark');
-    themeIcon.classList.remove('fa-moon');
-    themeIcon.classList.add('fa-sun');
-}
+    function init() {
+        const toggle = getToggle();
+        if (!toggle) return;
 
-// Education section functionality
-document.addEventListener('DOMContentLoaded', function () {
-    // Read More functionality for Education section
-    const educationReadMoreButtons = document.querySelectorAll('#education .read-more');
+        // Restore saved theme
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved === 'dark') applyTheme('dark');
 
-    educationReadMoreButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const details = this.closest('.education-item').querySelector('.details');
-            details.classList.toggle('active');
-
-            if (details.classList.contains('active')) {
-                this.textContent = 'Read Less';
-            } else {
-                this.textContent = 'Read More';
-            }
+        // Toggle on click
+        toggle.addEventListener('click', () => {
+            const current = document.body.getAttribute(DARK_ATTR);
+            applyTheme(current === 'dark' ? 'light' : 'dark');
         });
-    });
+    }
 
-    // Filter functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const educationItems = document.querySelectorAll('.education-item');
+    return { init };
+})();
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remove active class from all buttons
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to clicked button
-            button.classList.add('active');
+/* ------------------------------------------------------------
+ *  3. MOBILE NAVIGATION (Hamburger Menu)
+ * ---------------------------------------------------------- */
 
-            const filterValue = button.getAttribute('data-filter');
+const NavManager = (() => {
+    const getHamburger = () => $('#hamburger');
+    const getMenu = () => $('#nav-menu');
 
-            educationItems.forEach(item => {
-                if (filterValue === 'all') {
-                    item.style.display = 'block';
-                } else {
-                    if (item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                }
+    function closeMenu() {
+        const menu = getMenu();
+        const burger = getHamburger();
+        if (!menu || !burger) return;
+        menu.classList.remove('active');
+        burger.innerHTML = '<i class="fas fa-bars"></i>';
+    }
+
+    function init() {
+        const hamburger = getHamburger();
+        const menu = getMenu();
+        if (!hamburger || !menu) return;
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = menu.classList.toggle('active');
+            hamburger.innerHTML = isOpen
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close menu on nav-link click
+        $$('.nav-link').forEach((link) =>
+            link.addEventListener('click', closeMenu)
+        );
+    }
+
+    return { init, close: closeMenu };
+})();
+
+/* ------------------------------------------------------------
+ *  4. EDUCATION SECTION (Read More + Filter)
+ * ---------------------------------------------------------- */
+
+const EducationManager = (() => {
+    function initReadMore() {
+        $$('#education .read-more').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const details = this.closest('.education-item')?.querySelector('.details');
+                if (!details) return;
+
+                const isOpen = details.classList.toggle('active');
+                this.textContent = isOpen ? 'Read Less' : 'Read More';
             });
         });
-    });
-});
-
-// Certificate Modal Functions
-function showCertificates() {
-    document.getElementById('certificateModal').style.display = 'flex';
-}
-
-function hideCertificates() {
-    document.getElementById('certificateModal').style.display = 'none';
-}
-
-// Close modal when clicking outside or pressing Escape
-document.addEventListener('DOMContentLoaded', function () {
-    const modal = document.getElementById('certificateModal');
-
-    // Close modal when clicking outside
-    window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && modal.style.display === 'flex') {
-            modal.style.display = 'none';
-        }
-    });
-});
-
-// Research section functionality
-document.addEventListener("DOMContentLoaded", function () {
-    const researchButtons = document.querySelectorAll(
-        "#Research .research-btn"
-    );
-
-    researchButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            const targetId = button.getAttribute("data-research");
-            const details = document.getElementById(targetId);
-
-            if (!details) return;
-
-            const isExpanded =
-                button.getAttribute("aria-expanded") === "true";
-
-            details.hidden = isExpanded;
-
-            button.setAttribute(
-                "aria-expanded",
-                String(!isExpanded)
-            );
-
-            const label = isExpanded ? "Read More" : "Show Less";
-            const icon = isExpanded
-                ? "fa-arrow-right"
-                : "fa-arrow-up";
-
-            button.innerHTML =
-                `${label} <i class="fas ${icon}" aria-hidden="true"></i>`;
-        });
-    });
-});
-
-// Skills Section JavaScript
-document.addEventListener('DOMContentLoaded', function () {
-    const slider = document.getElementById('skillsSlider');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const sliderDots = document.getElementById('sliderDots');
-    const skillCategories = document.querySelectorAll('.skill-category');
-
-    let currentSlide = 0;
-    let slidesPerView = getSlidesPerView();
-
-    // Create dots based on number of slides
-    function createDots() {
-        sliderDots.innerHTML = '';
-        const totalSlides = Math.ceil(skillCategories.length / slidesPerView);
-
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('slider-dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => goToSlide(i));
-            sliderDots.appendChild(dot);
-        }
     }
 
-    // Calculate how many slides to show based on screen width
+    function initFilter() {
+        const buttons = $$('.filter-btn');
+        const items = $$('.education-item');
+        if (!buttons.length || !items.length) return;
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                buttons.forEach((b) => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+                items.forEach((item) => {
+                    const show =
+                        filter === 'all' ||
+                        item.getAttribute('data-category') === filter;
+                    item.style.display = show ? 'block' : 'none';
+                });
+            });
+        });
+    }
+
+    function init() {
+        initReadMore();
+        initFilter();
+    }
+
+    return { init };
+})();
+
+/* ------------------------------------------------------------
+ *  5. PROJECT SECTION (Read More Toggle)
+ * ---------------------------------------------------------- */
+
+const ProjectManager = (() => {
+    function init() {
+        $$('#project .read-more').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const fullDesc =
+                    this.closest('.project-content')?.querySelector('.full-description');
+                if (!fullDesc) return;
+
+                const isOpen = fullDesc.classList.toggle('show');
+                this.classList.toggle('active', isOpen);
+                this.innerHTML = isOpen
+                    ? 'Read Less <i class="fas fa-chevron-up"></i>'
+                    : 'Read More <i class="fas fa-chevron-down"></i>';
+            });
+        });
+    }
+
+    return { init };
+})();
+
+/* ------------------------------------------------------------
+ *  6. RESEARCH SECTION (Read More Toggle)
+ * ---------------------------------------------------------- */
+
+const ResearchManager = (() => {
+    function init() {
+        $$('#Research .research-btn').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-research');
+                const details = targetId ? document.getElementById(targetId) : null;
+                if (!details) return;
+
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                details.hidden = isExpanded;
+                this.setAttribute('aria-expanded', String(!isExpanded));
+
+                this.innerHTML = isExpanded
+                    ? 'Read More <i class="fas fa-arrow-right"></i>'
+                    : 'Show Less <i class="fas fa-arrow-up"></i>';
+            });
+        });
+    }
+
+    return { init };
+})();
+
+/* ------------------------------------------------------------
+ *  7. CERTIFICATE MODAL (B.Tech Marksheets)
+ * ---------------------------------------------------------- */
+
+const CertificateModal = (() => {
+    const getModal = () => document.getElementById('certificateModal');
+
+    function open() {
+        const modal = getModal();
+        if (modal) modal.style.display = 'flex';
+    }
+
+    function close() {
+        const modal = getModal();
+        if (modal) modal.style.display = 'none';
+    }
+
+    function init() {
+        const modal = getModal();
+        if (!modal) return;
+
+        // Click outside to close
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) close();
+        });
+
+        // Escape key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') close();
+        });
+    }
+
+    // Expose globally for inline onclick in HTML
+    window.showCertificates = open;
+    window.hideCertificates = close;
+
+    return { init, open, close };
+})();
+
+/* ------------------------------------------------------------
+ *  8. SKILLS SLIDER + EXPANDABLE + BAR ANIMATION
+ * ---------------------------------------------------------- */
+
+const SkillsSlider = (() => {
+    let currentSlide = 0;
+    let slidesPerView = 1;
+
+    const getSlider = () => document.getElementById('skillsSlider');
+    const getPrev = () => document.getElementById('prevBtn');
+    const getNext = () => document.getElementById('nextBtn');
+    const getDots = () => document.getElementById('sliderDots');
+    const getCategories = () => $$('.skill-category');
+
     function getSlidesPerView() {
         if (window.innerWidth <= 768) return 1;
         if (window.innerWidth <= 1024) return 2;
         return 3;
     }
 
-    // Update slider position
+    function getMaxSlide() {
+        const total = getCategories().length;
+        return Math.max(0, Math.ceil(total / slidesPerView) - 1);
+    }
+
+    function createDots() {
+        const dotsContainer = getDots();
+        if (!dotsContainer) return;
+
+        dotsContainer.innerHTML = '';
+        const totalDots = getMaxSlide() + 1;
+
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
     function updateSlider() {
-        const slideWidth = skillCategories[0].offsetWidth + 25; // width + gap
+        const slider = getSlider();
+        const categories = getCategories();
+        if (!slider || !categories.length) return;
+
+        const gap = 25; // matches CSS gap
+        const slideWidth = categories[0].offsetWidth + gap;
         slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
 
         // Update dots
-        const dots = document.querySelectorAll('.slider-dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-        });
+        $$('.slider-dot').forEach((dot, i) =>
+            dot.classList.toggle('active', i === currentSlide)
+        );
 
-        // Update button states
-        prevBtn.disabled = currentSlide === 0;
-        nextBtn.disabled = currentSlide >= Math.ceil(skillCategories.length / slidesPerView) - 1;
+        // Update nav buttons
+        const prevBtn = getPrev();
+        const nextBtn = getNext();
+        if (prevBtn) prevBtn.disabled = currentSlide === 0;
+        if (nextBtn) nextBtn.disabled = currentSlide >= getMaxSlide();
     }
 
-    // Navigate to specific slide
-    function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
+    function goToSlide(index) {
+        currentSlide = Math.max(0, Math.min(index, getMaxSlide()));
         updateSlider();
     }
 
-    // Next slide
-    function nextSlide() {
-        const maxSlide = Math.ceil(skillCategories.length / slidesPerView) - 1;
-        if (currentSlide < maxSlide) {
+    function next() {
+        if (currentSlide < getMaxSlide()) {
             currentSlide++;
             updateSlider();
         }
     }
 
-    // Previous slide
-    function prevSlide() {
+    function prev() {
         if (currentSlide > 0) {
             currentSlide--;
             updateSlider();
         }
     }
 
-    // Initialize slider
-    function initSlider() {
+    function initExpandButtons() {
+        $$('.expand-btn').forEach((btn) => {
+            btn.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const section = targetId ? document.getElementById(targetId) : null;
+                if (!section) return;
+
+                const isOpen = section.classList.toggle('show');
+                const label = this.querySelector('span');
+                if (label) label.textContent = isOpen ? 'Show Less' : 'Show More';
+                this.classList.toggle('expanded', isOpen);
+            });
+        });
+    }
+
+    function initSkillBarAnimation() {
+        const bars = $$('.skill-progress');
+        if (!bars.length) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const bar = entry.target;
+                    const targetWidth = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = targetWidth;
+                    }, 300);
+                    observer.unobserve(bar);
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        bars.forEach((bar) => observer.observe(bar));
+    }
+
+    function init() {
+        const slider = getSlider();
+        if (!slider) return;
+
         slidesPerView = getSlidesPerView();
         createDots();
         updateSlider();
 
-        // Add event listeners
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
+        getPrev()?.addEventListener('click', prev);
+        getNext()?.addEventListener('click', next);
 
-        // Handle window resize
+        // Debounced resize
+        let resizeTimer;
         window.addEventListener('resize', () => {
-            slidesPerView = getSlidesPerView();
-            createDots();
-            currentSlide = 0;
-            updateSlider();
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                slidesPerView = getSlidesPerView();
+                currentSlide = 0;
+                createDots();
+                updateSlider();
+            }, 150);
         });
+
+        initExpandButtons();
+        initSkillBarAnimation();
     }
 
-    // Initialize the slider
-    initSlider();
-
-    // Expandable skills functionality
-    const expandButtons = document.querySelectorAll('.expand-btn');
-
-    expandButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Get the specific target for this button only
-            const targetId = this.getAttribute('data-target');
-            const expandableSection = document.getElementById(targetId);
-
-            // Toggle only this specific section
-            const isExpanded = expandableSection.classList.contains('show');
-
-            if (isExpanded) {
-                expandableSection.classList.remove('show');
-                this.querySelector('span').textContent = 'Show More';
-                this.classList.remove('expanded');
-            } else {
-                expandableSection.classList.add('show');
-                this.querySelector('span').textContent = 'Show Less';
-                this.classList.add('expanded');
-            }
-        });
-    });
-
-    // Animate skill bars on scroll
-    const skillBars = document.querySelectorAll('.skill-progress');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillBar = entry.target;
-                const width = skillBar.style.width;
-                skillBar.style.width = '0';
-                setTimeout(() => {
-                    skillBar.style.width = width;
-                }, 300);
-                observer.unobserve(skillBar);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    skillBars.forEach(bar => {
-        observer.observe(bar);
-    });
-});
-
-// Set current year in footer
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-// Initialize EmailJS
-(function () {
-    emailjs.init("I-4jo9KNWHQCi4KB_");
+    return { init };
 })();
 
-// Contact Form Submission Handler
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+/* ------------------------------------------------------------
+ *  9. CONTACT FORM (EmailJS)
+ * ---------------------------------------------------------- */
 
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
+const ContactForm = (() => {
+    const EMAILJS_PUBLIC_KEY = 'I-4jo9KNWHQCi4KB_';
+    const SERVICE_ID = 'service_illdc18';
+    const TEMPLATE_ID = 'template_wug3hno';
+    const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Basic validation
-    if (!name || !email || !message) {
-        alert('Please fill in all fields');
-        return;
+    function showAlert(msg) {
+        window.alert(msg);
     }
 
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address');
-        return;
+    async function send(templateParams) {
+        if (typeof emailjs === 'undefined') {
+            throw new Error('EmailJS library not loaded');
+        }
+        return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
     }
 
-    // Show loading state
-    const submitBtn = this.querySelector('.submit-btn');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
+    function init() {
+        const form = document.getElementById('contactForm');
+        if (!form) return;
 
-    // Prepare template parameters for EmailJS
-    const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message,
-        to_name: 'Ashish Kumar',
-        date: new Date().toLocaleString()
-    };
+        // Init EmailJS only if library is loaded
+        if (typeof emailjs !== 'undefined') {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
+        }
 
-    // Send email using EmailJS
-    emailjs.send('service_illdc18', 'template_wug3hno', templateParams)
-        .then(function (response) {
-            console.log('SUCCESS!', response.status, response.text);
-            alert('Thank you! Your message has been sent successfully.');
-            document.getElementById('contactForm').reset();
-        }, function (error) {
-            console.log('FAILED...', error);
-            alert('Failed to send message. Please try again later.');
-        })
-        .finally(function () {
-            // Reset button state in both success and error cases
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalText;
-        });
-});
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
 
-// Project section functionality
-document.addEventListener('DOMContentLoaded', function () {
-    const projectReadMoreBtns = document.querySelectorAll('#project .read-more');
+            const name = form.querySelector('#name')?.value.trim() || '';
+            const email = form.querySelector('#email')?.value.trim() || '';
+            const message = form.querySelector('#message')?.value.trim() || '';
 
-    // Read More functionality for Project section
-    projectReadMoreBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            const fullDescription = this.closest('.project-content').querySelector('.full-description');
-            fullDescription.classList.toggle('show');
-            this.classList.toggle('active');
+            // Validation
+            if (!name || !email || !message) {
+                showAlert('Please fill in all fields.');
+                return;
+            }
+            if (!EMAIL_REGEX.test(email)) {
+                showAlert('Please enter a valid email address.');
+                return;
+            }
 
-            if (fullDescription.classList.contains('show')) {
-                this.innerHTML = 'Read Less <i class="fas fa-chevron-up"></i>';
-            } else {
-                this.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                await send({
+                    from_name: name,
+                    from_email: email,
+                    message: message,
+                    to_name: 'Ashish Kumar',
+                    date: new Date().toLocaleString()
+                });
+
+                showAlert('Thank you! Your message has been sent successfully.');
+                form.reset();
+            } catch (err) {
+                console.error('EmailJS Error:', err);
+                showAlert('Failed to send message. Please try again later.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
             }
         });
-    });
+    }
+
+    return { init };
+})();
+
+/* ------------------------------------------------------------
+ * 10. FOOTER (Current Year)
+ * ---------------------------------------------------------- */
+
+const Footer = (() => {
+    function init() {
+        const yearEl = document.getElementById('currentYear');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+    }
+    return { init };
+})();
+
+/* ------------------------------------------------------------
+ * 11. BOOTSTRAP — Initialize Everything
+ * ---------------------------------------------------------- */
+
+onReady(() => {
+    ThemeManager.init();
+    NavManager.init();
+    EducationManager.init();
+    ProjectManager.init();
+    ResearchManager.init();
+    CertificateModal.init();
+    SkillsSlider.init();
+    ContactForm.init();
+    Footer.init();
+
+    console.log('%c✅ Portfolio initialized successfully', 'color:#3498db;font-weight:bold;');
 });
-
-
-
-
-
