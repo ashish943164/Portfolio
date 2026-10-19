@@ -160,6 +160,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
+
+
+
+/* =========================================
+   RESEARCH SECTION FUNCTIONALITY
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const researchButtons = document.querySelectorAll(
+        "#Research .research-btn"
+    );
+
+    researchButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            const targetId = button.getAttribute("data-research");
+            const details = document.getElementById(targetId);
+
+            if (!details) return;
+
+            const isExpanded =
+                button.getAttribute("aria-expanded") === "true";
+
+            details.hidden = isExpanded;
+
+            button.setAttribute(
+                "aria-expanded",
+                String(!isExpanded)
+            );
+
+            const label = isExpanded ? "Read More" : "Show Less";
+            const icon = isExpanded
+                ? "fa-arrow-right"
+                : "fa-arrow-up";
+
+            button.innerHTML =
+                `${label} <i class="fas ${icon}" aria-hidden="true"></i>`;
+        });
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Skills Section JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('skillsSlider');
