@@ -1,5 +1,3 @@
----
-
 # 🌐 Personal Portfolio Website
 
 ## 👋 Introduction
