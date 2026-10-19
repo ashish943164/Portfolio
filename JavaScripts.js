@@ -1,3 +1,5 @@
+
+
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 const themeToggle = document.getElementById('theme-toggle');
@@ -47,7 +49,7 @@ if (savedTheme === 'dark') {
     themeIcon.classList.add('fa-sun');
 }
 
-// Education section functionality
+// Education section functionality - FIXED
 document.addEventListener('DOMContentLoaded', function () {
     // Read More functionality for Education section
     const educationReadMoreButtons = document.querySelectorAll('#education .read-more');
@@ -93,6 +95,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+
+
+
+
+
+
+
+
 // Certificate Modal Functions
 function showCertificates() {
     document.getElementById('certificateModal').style.display = 'flex';
@@ -103,74 +114,100 @@ function hideCertificates() {
 }
 
 // Close modal when clicking outside or pressing Escape
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('certificateModal');
-
+    
     // Close modal when clicking outside
-    window.addEventListener('click', function (event) {
+    window.addEventListener('click', function(event) {
         if (event.target === modal) {
             modal.style.display = 'none';
         }
     });
-
+    
     // Close modal with Escape key
-    document.addEventListener('keydown', function (event) {
+    document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && modal.style.display === 'flex') {
             modal.style.display = 'none';
         }
     });
-});
-
-// Research section functionality
-document.addEventListener("DOMContentLoaded", function () {
-    const researchButtons = document.querySelectorAll(
-        "#Research .research-btn"
-    );
-
-    researchButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-            const targetId = button.getAttribute("data-research");
-            const details = document.getElementById(targetId);
-
-            if (!details) return;
-
-            const isExpanded =
-                button.getAttribute("aria-expanded") === "true";
-
-            details.hidden = isExpanded;
-
-            button.setAttribute(
-                "aria-expanded",
-                String(!isExpanded)
-            );
-
-            const label = isExpanded ? "Read More" : "Show Less";
-            const icon = isExpanded
-                ? "fa-arrow-right"
-                : "fa-arrow-up";
-
-            button.innerHTML =
-                `${label} <i class="fas ${icon}" aria-hidden="true"></i>`;
+    
+    // Read More functionality for B.Tech item
+    const btechReadMoreBtn = document.querySelector('.education-item[data-category="education"] .read-more');
+    if (btechReadMoreBtn) {
+        btechReadMoreBtn.addEventListener('click', function() {
+            const details = this.closest('.education-item').querySelector('.details');
+            details.classList.toggle('active');
+            
+            if (details.classList.contains('active')) {
+                this.textContent = 'Read Less';
+            } else {
+                this.textContent = 'Read More';
+            }
         });
-    });
+    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Skills Section JavaScript
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     const slider = document.getElementById('skillsSlider');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const sliderDots = document.getElementById('sliderDots');
     const skillCategories = document.querySelectorAll('.skill-category');
-
+    
     let currentSlide = 0;
     let slidesPerView = getSlidesPerView();
-
+    
     // Create dots based on number of slides
     function createDots() {
         sliderDots.innerHTML = '';
         const totalSlides = Math.ceil(skillCategories.length / slidesPerView);
-
+        
         for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement('div');
             dot.classList.add('slider-dot');
@@ -179,36 +216,36 @@ document.addEventListener('DOMContentLoaded', function () {
             sliderDots.appendChild(dot);
         }
     }
-
+    
     // Calculate how many slides to show based on screen width
     function getSlidesPerView() {
         if (window.innerWidth <= 768) return 1;
         if (window.innerWidth <= 1024) return 2;
         return 3;
     }
-
+    
     // Update slider position
     function updateSlider() {
-        const slideWidth = skillCategories[0].offsetWidth + 25; // width + gap
+        const slideWidth = skillCategories[0].offsetWidth + 20; // width + gap
         slider.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-
+        
         // Update dots
         const dots = document.querySelectorAll('.slider-dot');
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlide);
         });
-
+        
         // Update button states
         prevBtn.disabled = currentSlide === 0;
         nextBtn.disabled = currentSlide >= Math.ceil(skillCategories.length / slidesPerView) - 1;
     }
-
+    
     // Navigate to specific slide
     function goToSlide(slideIndex) {
         currentSlide = slideIndex;
         updateSlider();
     }
-
+    
     // Next slide
     function nextSlide() {
         const maxSlide = Math.ceil(skillCategories.length / slidesPerView) - 1;
@@ -217,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function () {
             updateSlider();
         }
     }
-
+    
     // Previous slide
     function prevSlide() {
         if (currentSlide > 0) {
@@ -225,17 +262,17 @@ document.addEventListener('DOMContentLoaded', function () {
             updateSlider();
         }
     }
-
+    
     // Initialize slider
     function initSlider() {
         slidesPerView = getSlidesPerView();
         createDots();
         updateSlider();
-
+        
         // Add event listeners
         prevBtn.addEventListener('click', prevSlide);
         nextBtn.addEventListener('click', nextSlide);
-
+        
         // Handle window resize
         window.addEventListener('resize', () => {
             slidesPerView = getSlidesPerView();
@@ -244,22 +281,22 @@ document.addEventListener('DOMContentLoaded', function () {
             updateSlider();
         });
     }
-
+    
     // Initialize the slider
     initSlider();
-
+    
     // Expandable skills functionality
     const expandButtons = document.querySelectorAll('.expand-btn');
-
+    
     expandButtons.forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function() {
             // Get the specific target for this button only
             const targetId = this.getAttribute('data-target');
             const expandableSection = document.getElementById(targetId);
-
+            
             // Toggle only this specific section
             const isExpanded = expandableSection.classList.contains('show');
-
+            
             if (isExpanded) {
                 expandableSection.classList.remove('show');
                 this.querySelector('span').textContent = 'Show More';
@@ -271,10 +308,10 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-
+    
     // Animate skill bars on scroll
     const skillBars = document.querySelectorAll('.skill-progress');
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -293,6 +330,11 @@ document.addEventListener('DOMContentLoaded', function () {
         observer.observe(bar);
     });
 });
+
+
+
+
+
 
 // Set current year in footer
 document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -374,4 +416,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
 });
